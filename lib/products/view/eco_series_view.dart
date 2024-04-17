@@ -280,9 +280,10 @@ class _ecoSeries_viewState extends State<ecoSeries_view> {
                                             '${data['name'].length < 14 ? data['name'] : '${data['name'].toString()}'}..',
                                             style: TextStyle(
                                                 fontSize: 10,
-                                                fontWeight: FontWeight.bold),
-                                            maxLines: 2,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.italic),
                                             textAlign: TextAlign.center,
+                                            maxLines: 1,
                                           ),
                                         ],
                                       ),

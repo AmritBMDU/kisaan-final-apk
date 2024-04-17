@@ -33,6 +33,8 @@ class _allProduct extends State<allProduct> {
   late StreamSubscription subscription;
   bool isDeviceConnected = false;
   bool isAlertSet = false;
+
+  //
   getConnectivity() =>
       subscription = Connectivity().onConnectivityChanged.listen(
         (ConnectivityResult result) async {
@@ -206,6 +208,9 @@ class _allProduct extends State<allProduct> {
                           );
                         }
                       }),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,

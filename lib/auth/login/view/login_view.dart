@@ -396,7 +396,7 @@ class _login_viewState extends State<login_view> {
                       child: GradientText(
                         gradient: appcolor.gradient,
                         widget: Text(
-                          '${AppLocalizations.of(context)!.noAccount}? ',
+                          '${AppLocalizations.of(context)!.noAccount} ',
                           style: TextStyle(
                             fontSize: 15,
                           ),

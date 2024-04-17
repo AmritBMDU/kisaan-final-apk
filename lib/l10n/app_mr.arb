@@ -174,6 +174,13 @@
 "odia": "ओडिआ",
 "nepali": "नेपाळी",
 "orders":"आदेश ",
-"exit": "तुम्हाला बाहेर पडण्याची इच्छा आहे का?"
+"exit": "तुम्हाला बाहेर पडण्याची इच्छा आहे का?",
+"referralCode": "संदर्भ कोड",
+"businessName": "व्यवसायाचे नाव",
+"partnerCode": "साथी कोड",
+"otpVerification": "OTP सत्यापन",
+"verifyMobileNumber": "तुमचा मोबाइल नंबर सत्यापित करा",
+"dontReceive": "प्राप्त न करा",
+"resend": "पुन्हा पाठवा"
 
 }

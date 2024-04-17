@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -245,140 +246,136 @@ class _detailedProductViewState extends State<detailedProductView> {
           //     ],
           //   ),
           // ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                FutureBuilder<productdetail>(
-                    future: SinglProductApi(name),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        print(snapshot.error);
-                        return Image.asset(apiDomain().nodataimage.toString());
-                      } else if (snapshot.hasData) {
-                        var data = snapshot.data;
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: Get.height * 0.41,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Stack(
-                                        alignment: Alignment.topRight,
-                                        children: [
-                                          Column(children: [
-                                            CarouselSlider.builder(
-                                                itemCount: data!.photos!.length,
-                                                itemBuilder: (context, index,
-                                                    realindex) {
-                                                  final urlimage =
-                                                      data.photos![index];
-                                                  print("dshjdsh" +
-                                                      data!.photos!.length
-                                                          .toString());
-                                                  return Container(
-                                                    width: Get.width,
-                                                    color: Colors.grey,
-                                                    child: Image.network(
-                                                        '${apiDomain().imageUrl + urlimage.url.toString()}',
-                                                        fit: BoxFit.fitWidth),
-                                                  );
-                                                },
-                                                options: CarouselOptions(
-                                                    autoPlay: true,
-                                                    height: 200,
-                                                    enlargeCenterPage: false,
-                                                    aspectRatio: 2.0,
-                                                    viewportFraction: 1.0,
-                                                    initialPage: 0,
-                                                    onPageChanged:
-                                                        (index, reason) {
-                                                      // setState(() {
-                                                      //   _current = index;
-                                                      // });
-                                                    })),
-                                            Container(
-                                              color: Colors.white,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: AnimatedSmoothIndicator(
-                                                  activeIndex: _current,
-                                                  count: data!.size!.length,
-                                                  effect: JumpingDotEffect(
-                                                      dotWidth: 8,
-                                                      dotHeight: 8,
-                                                      activeDotColor:
-                                                          Colors.red,
-                                                      dotColor: Colors.black12),
-                                                ),
+          body: Column(
+            children: [
+              FutureBuilder<productdetail>(
+                  future: SinglProductApi(name),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      print(snapshot.error);
+                      return Image.asset(apiDomain().nodataimage.toString());
+                    } else if (snapshot.hasData) {
+                      var data = snapshot.data;
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: Get.height * 0.30,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topRight,
+                                      children: [
+                                        Column(children: [
+                                          CarouselSlider.builder(
+                                              itemCount: data!.photos!.length,
+                                              itemBuilder:
+                                                  (context, index, realindex) {
+                                                final urlimage =
+                                                    data.photos![index];
+                                                return Container(
+                                                  width: Get.width,
+                                                  color: Colors.grey,
+                                                  child: Image.network(
+                                                      '${apiDomain().imageUrl + urlimage.url.toString()}',
+                                                      fit: BoxFit.fitWidth),
+                                                );
+                                              },
+                                              options: CarouselOptions(
+                                                  autoPlay: true,
+                                                  height: 200,
+                                                  enlargeCenterPage: false,
+                                                  aspectRatio: 2.0,
+                                                  viewportFraction: 1.0,
+                                                  initialPage: 0,
+                                                  onPageChanged:
+                                                      (index, reason) {
+                                                    // setState(() {
+                                                    //   _current = index;
+                                                    // });
+                                                  })),
+                                          Container(
+                                            color: Colors.white,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: AnimatedSmoothIndicator(
+                                                activeIndex: _current,
+                                                count: data!.size!.length,
+                                                effect: JumpingDotEffect(
+                                                    dotWidth: 8,
+                                                    dotHeight: 8,
+                                                    activeDotColor: Colors.red,
+                                                    dotColor: Colors.black12),
                                               ),
                                             ),
-                                          ]),
-                                          // Column(
-                                          //   children: [
-                                          //
-                                          //     Padding(
-                                          //       padding: const EdgeInsets.all(4.0),
-                                          //       child: Container(
-                                          //         height: 50,
-                                          //         width: 50,
-                                          //         decoration: BoxDecoration(
-                                          //           border: Border.all(color:_current != null ? Colors.red:Colors.black,width: 2)
-                                          //         ),
-                                          //         child:Image.asset('assets/image 16.png',fit: BoxFit.cover,)
-                                          //
-                                          //       ),
-                                          //     ),
-                                          //
-                                          //     Padding(
-                                          //       padding: const EdgeInsets.all(4.0),
-                                          //       child: Container(
-                                          //
-                                          //         decoration: BoxDecoration(
-                                          //
-                                          //             border: Border.all(color:_current == null ? Colors.black:Colors.white,width: 2)
-                                          //         ),
-                                          //         child: Image(
-                                          //
-                                          //           image: AssetImage(
-                                          //             'assets/image 16.png',
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //     ),
-                                          //     Padding(
-                                          //       padding: const EdgeInsets.all(4.0),
-                                          //       child: Container(
-                                          //         decoration: BoxDecoration(
-                                          //             border: Border.all(color:_current == null ? Colors.black:Colors.white,width: 2)
-                                          //         ),
-                                          //         child: Image(
-                                          //           image: AssetImage(
-                                          //             'assets/image 16.png',
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //     ),
-                                          //   ],
-                                          // )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                          ),
+                                        ]),
+                                        // Column(
+                                        //   children: [
+                                        //
+                                        //     Padding(
+                                        //       padding: const EdgeInsets.all(4.0),
+                                        //       child: Container(
+                                        //         height: 50,
+                                        //         width: 50,
+                                        //         decoration: BoxDecoration(
+                                        //           border: Border.all(color:_current != null ? Colors.red:Colors.black,width: 2)
+                                        //         ),
+                                        //         child:Image.asset('assets/image 16.png',fit: BoxFit.cover,)
+                                        //
+                                        //       ),
+                                        //     ),
+                                        //
+                                        //     Padding(
+                                        //       padding: const EdgeInsets.all(4.0),
+                                        //       child: Container(
+                                        //
+                                        //         decoration: BoxDecoration(
+                                        //
+                                        //             border: Border.all(color:_current == null ? Colors.black:Colors.white,width: 2)
+                                        //         ),
+                                        //         child: Image(
+                                        //
+                                        //           image: AssetImage(
+                                        //             'assets/image 16.png',
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //     Padding(
+                                        //       padding: const EdgeInsets.all(4.0),
+                                        //       child: Container(
+                                        //         decoration: BoxDecoration(
+                                        //             border: Border.all(color:_current == null ? Colors.black:Colors.white,width: 2)
+                                        //         ),
+                                        //         child: Image(
+                                        //           image: AssetImage(
+                                        //             'assets/image 16.png',
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // )
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                                Column(
+                              ),
+                              SingleChildScrollView(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -460,23 +457,117 @@ class _detailedProductViewState extends State<detailedProductView> {
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  _onTapLink();
-                                                },
-                                                child: Text(
-                                                  '${_readMore ? 'Read More' : 'Read Less'}',
-                                                  style: TextStyle(
+                                            Container(
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    _onTapLink();
+                                                  },
+                                                  child: Text(
+                                                    '${_readMore ? 'Read More' : 'Read Less'}',
+                                                    style: TextStyle(
                                                       fontSize: 12,
-                                                      color: Colors.red),
-                                                )),
-                                            Text(
-                                              'Box Qty:                 ',
-                                              style: TextStyle(
-                                                  color: appcolor.redColor,
-                                                  fontWeight: FontWeight.bold),
-                                            )
+                                                      color: Colors.red,
+                                                    ),
+                                                    maxLines: 1,
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 70,
+                                                  child: Text(
+                                                    'Box Qty :                 ',
+                                                    style: TextStyle(
+                                                        color:
+                                                            appcolor.redColor,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    11)),
+                                                        border: Border.all(
+                                                            color: appcolor
+                                                                .redColor,
+                                                            width: 1)),
+                                                    width: 100,
+                                                    height: 30,
+                                                    child: Center(
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                decrement();
+                                                              });
+                                                            },
+                                                            child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        right:
+                                                                            1.0),
+                                                                child: Icon(
+                                                                  Icons.remove,
+                                                                  color: Colors
+                                                                      .black,
+                                                                )),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 2,
+                                                          ),
+                                                          Text(
+                                                            '$quantity',
+                                                            style: TextStyle(
+                                                              fontSize: 20,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 2,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              increment();
+                                                            },
+                                                            child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            3.0),
+                                                                child: Icon(
+                                                                  Icons.add,
+                                                                  color: Colors
+                                                                      .black,
+                                                                )),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            // increasedecreasement()
                                           ],
                                         )
                                       ],
@@ -484,6 +575,8 @@ class _detailedProductViewState extends State<detailedProductView> {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           padding: EdgeInsets.only(
@@ -491,7 +584,7 @@ class _detailedProductViewState extends State<detailedProductView> {
                                               top: 3,
                                               left: 10,
                                               right: 10),
-                                          width: Get.width * 0.45,
+                                          width: 350,
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius:
@@ -502,16 +595,18 @@ class _detailedProductViewState extends State<detailedProductView> {
                                               ),
                                             ),
                                           ),
-                                          child: Center(
+                                          child: Container(
+                                            width: 200,
                                             child: DropdownButtonFormField(
                                                 decoration:
                                                     InputDecoration.collapsed(
                                                   hintText: 'Selected Size',
                                                   hintStyle: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                    height: 1,
-                                                  ),
+                                                      color: Colors.black,
+                                                      fontSize: 14,
+                                                      height: 1,
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                 ),
                                                 value: value,
                                                 onChanged: (value) {
@@ -520,16 +615,21 @@ class _detailedProductViewState extends State<detailedProductView> {
                                                   });
                                                 },
                                                 items: productDataSize.Items!
-                                                    .map(
-                                                        (e) => DropdownMenuItem(
-                                                              child: Text(e.size
-                                                                  .toString()),
-                                                              value: e.id,
-                                                            ))
+                                                    .map((e) =>
+                                                        DropdownMenuItem(
+                                                          child: Text(
+                                                            e.size.toString(),
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          ),
+                                                          value: e.id,
+                                                        ))
                                                     .toList()),
                                           ),
                                         ),
-                                        increasedecreasement()
+                                        // increasedecreasement()
                                       ],
                                     ),
 
@@ -569,6 +669,9 @@ class _detailedProductViewState extends State<detailedProductView> {
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Row(
                                                             children: [
@@ -623,6 +726,9 @@ class _detailedProductViewState extends State<detailedProductView> {
                                                                 .spaceBetween,
                                                         children: [
                                                           Row(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Text(
                                                                 'Dealer Price(Rs.): ',
@@ -653,12 +759,18 @@ class _detailedProductViewState extends State<detailedProductView> {
                                                                         FontWeight
                                                                             .w600),
                                                               ),
-                                                              Text(
-                                                                '${datasale['module_size']}',
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600),
+                                                              Container(
+                                                                width: 75,
+                                                                child: Text(
+                                                                  '${datasale['module_size']}',
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
@@ -874,309 +986,309 @@ class _detailedProductViewState extends State<detailedProductView> {
                                         : Container(),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
 
-                            // Column(
-                            //   mainAxisAlignment: MainAxisAlignment.start,
-                            //   crossAxisAlignment: CrossAxisAlignment.start,
-                            //   children: [
-                            //     Text('Additional Information',style: TextStyle(fontSize: 15,color: appcolor.redColor),),
-                            //     SizedBox(height: 10,),
-                            //     Row(
-                            //       children: [
-                            //         CircleAvatar(
-                            //           backgroundColor: Colors.black,
-                            //           radius: 4,
-                            //         ),
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Text(
-                            //           'Material- Galvanized Iron/ Mild Steel',
-                            //           style: TextStyle(
-                            //             fontSize: 14,
-                            //             height: 1,
-                            //           ),
-                            //         )
-                            //       ],
-                            //     ),
-                            //     Row(
-                            //       children: [
-                            //         CircleAvatar(
-                            //           backgroundColor: Colors.black,
-                            //           radius: 4,
-                            //         ),
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Text(
-                            //           'Raw Material- TATA Steel',
-                            //           style: TextStyle(
-                            //             fontSize: 14,
-                            //             height: 1,
-                            //           ),
-                            //         )
-                            //       ],
-                            //     ),
-                            //     Row(
-                            //       children: [
-                            //         CircleAvatar(
-                            //           backgroundColor: Colors.black,
-                            //           radius: 4,
-                            //         ),
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Text(
-                            //           'Feature- Flame and Rust Proof',
-                            //           style: TextStyle(
-                            //             fontSize: 14,
-                            //             height: 1,
-                            //           ),
-                            //         )
-                            //       ],
-                            //     ),
-                            //     Row(
-                            //       children: [
-                            //         CircleAvatar(
-                            //           backgroundColor: Colors.black,
-                            //           radius: 4,
-                            //         ),
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Text(
-                            //           'Dimensions- As per requirement',
-                            //           style: TextStyle(
-                            //             fontSize: 14,
-                            //             height: 1,
-                            //           ),
-                            //         )
-                            //       ],
-                            //     ),
-                            //     Row(
-                            //       children: [
-                            //         CircleAvatar(
-                            //           backgroundColor: Colors.black,
-                            //           radius: 4,
-                            //         ),
-                            //         SizedBox(
-                            //           width: 10,
-                            //         ),
-                            //         Text(
-                            //           'Cable Entry- Side Entry',
-                            //           style: TextStyle(
-                            //             fontSize: 14,
-                            //             height: 1,
-                            //           ),
-                            //         )
-                            //       ],
-                            //     ),
-                            //     SizedBox(height: 10,),
-                            //
-                            //
-                            //   ],
-                            // ),
+                          // Column(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     Text('Additional Information',style: TextStyle(fontSize: 15,color: appcolor.redColor),),
+                          //     SizedBox(height: 10,),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.black,
+                          //           radius: 4,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Text(
+                          //           'Material- Galvanized Iron/ Mild Steel',
+                          //           style: TextStyle(
+                          //             fontSize: 14,
+                          //             height: 1,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.black,
+                          //           radius: 4,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Text(
+                          //           'Raw Material- TATA Steel',
+                          //           style: TextStyle(
+                          //             fontSize: 14,
+                          //             height: 1,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.black,
+                          //           radius: 4,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Text(
+                          //           'Feature- Flame and Rust Proof',
+                          //           style: TextStyle(
+                          //             fontSize: 14,
+                          //             height: 1,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.black,
+                          //           radius: 4,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Text(
+                          //           'Dimensions- As per requirement',
+                          //           style: TextStyle(
+                          //             fontSize: 14,
+                          //             height: 1,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.black,
+                          //           radius: 4,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Text(
+                          //           'Cable Entry- Side Entry',
+                          //           style: TextStyle(
+                          //             fontSize: 14,
+                          //             height: 1,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     SizedBox(height: 10,),
+                          //
+                          //
+                          //   ],
+                          // ),
 
-                            // SmoothStarRating(
-                            //     allowHalfRating: false,
-                            //     onRatingChanged: (v) {
-                            //       rating = v;
-                            //       setState(() {});
-                            //     },
-                            //     starCount: 5,
-                            //    rating: rating,
-                            //     size: 40.0,
-                            //     filledIconData: Icons.star,
-                            //     halfFilledIconData: Icons.blur_on,
-                            //     color: Colors.yellow,
-                            //     borderColor: Colors.red,
-                            //     spacing:0.0
-                            // ),
-                            // SizedBox(height: 10,),
-                            // Container(
-                            //   child: Column(
-                            //     mainAxisAlignment: MainAxisAlignment.start,
-                            //     crossAxisAlignment: CrossAxisAlignment.center,
-                            //     children: [
-                            //       SizedBox(height: 8),
-                            //       chartRow(context, '5', 89),
-                            //       chartRow(context, '4', 70),
-                            //       chartRow(context, '3', 40),
-                            //       chartRow(context, '4', 10),
-                            //       chartRow(context, '1', 0),
-                            //       SizedBox(height: 8),
-                            //     ],
-                            //   ),
-                            // ),
-                            //         SizedBox(height: 20,),
-                            // Container(
-                            //   decoration: BoxDecoration(),
-                            //   height: Get.height * 0.08,
-                            //   child: TabBar(
-                            //     dividerColor: appcolor.newRedColor,
-                            //     isScrollable: true,
-                            //     unselectedLabelColor: Colors.black,
-                            //     unselectedLabelStyle: TextStyle(
-                            //       fontSize: 14,
-                            //     ),
-                            //     indicatorColor: appcolor.redColor,
-                            //     labelColor: Colors.black,
-                            //     labelStyle: TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.black,
-                            //       fontSize: 14,
-                            //     ),
-                            //     controller: controller.tabcontroller,
-                            //     tabs: [
-                            //       Container(
-                            //         child: Text(
-                            //           'Description'.tr,
-                            //         ),
-                            //       ),
-                            //       Container(
-                            //         child: Text('Additional Information'.tr),
-                            //       ),
-                            //       Text('Review'.tr),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Container(
-                            //   height: Get.height * 0.15,
-                            //   child: Expanded(
-                            //     child: TabBarView(
-                            //       controller: controller.tabcontroller,
-                            //       children: [
-                            //         Column(
-                            //           children: [
-                            //             SizedBox(
-                            //               height: 10,
-                            //             ),
-                            //             Row(
-                            //               children: [
-                            //                 CircleAvatar(
-                            //                   backgroundColor: Colors.black,
-                            //                   radius: 4,
-                            //                 ),
-                            //                 SizedBox(
-                            //                   width: 10,
-                            //                 ),
-                            //                 Text(
-                            //                   'Material- Galvanized Iron/ Mild Steel',
-                            //                   style: TextStyle(
-                            //                     fontSize: 14,
-                            //                     height: 1,
-                            //                   ),
-                            //                 )
-                            //               ],
-                            //             ),
-                            //             Row(
-                            //               children: [
-                            //                 CircleAvatar(
-                            //                   backgroundColor: Colors.black,
-                            //                   radius: 4,
-                            //                 ),
-                            //                 SizedBox(
-                            //                   width: 10,
-                            //                 ),
-                            //                 Text(
-                            //                   'Raw Material- TATA Steel',
-                            //                   style: TextStyle(
-                            //                     fontSize: 14,
-                            //                     height: 1,
-                            //                   ),
-                            //                 )
-                            //               ],
-                            //             ),
-                            //             Row(
-                            //               children: [
-                            //                 CircleAvatar(
-                            //                   backgroundColor: Colors.black,
-                            //                   radius: 4,
-                            //                 ),
-                            //                 SizedBox(
-                            //                   width: 10,
-                            //                 ),
-                            //                 Text(
-                            //                   'Feature- Flame and Rust Proof',
-                            //                   style: TextStyle(
-                            //                     fontSize: 14,
-                            //                     height: 1,
-                            //                   ),
-                            //                 )
-                            //               ],
-                            //             ),
-                            //             Row(
-                            //               children: [
-                            //                 CircleAvatar(
-                            //                   backgroundColor: Colors.black,
-                            //                   radius: 4,
-                            //                 ),
-                            //                 SizedBox(
-                            //                   width: 10,
-                            //                 ),
-                            //                 Text(
-                            //                   'Dimensions- As per requirement',
-                            //                   style: TextStyle(
-                            //                     fontSize: 14,
-                            //                     height: 1,
-                            //                   ),
-                            //                 )
-                            //               ],
-                            //             ),
-                            //             Row(
-                            //               children: [
-                            //                 CircleAvatar(
-                            //                   backgroundColor: Colors.black,
-                            //                   radius: 4,
-                            //                 ),
-                            //                 SizedBox(
-                            //                   width: 10,
-                            //                 ),
-                            //                 Text(
-                            //                   'Cable Entry- Side Entry',
-                            //                   style: TextStyle(
-                            //                     fontSize: 14,
-                            //                     height: 1,
-                            //                   ),
-                            //                 )
-                            //               ],
-                            //             ),
-                            //           ],
-                            //         ),
-                            //         Center(child: Text('Information')),
-                            //         Center(child: Text('Review')),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     GradientText(
-                            //         gradient: appcolor.gradient,
-                            //         widget: Text('Related Products', style: TextStyle(fontSize: 20,color: appcolor.redColor),)),
-                            //   ],
-                            // ),
-                            // SizedBox(height: 10,),
-                            // Wrap(
-                            //   spacing: 10,
-                            //   children: [
-                            //     appItemWidget('assets/image 25.png'),
-                            //     appItemWidget('assets/image 25.png'),
-                            //     appItemWidget('assets/image 25.png'),
-                            //   ],
-                            // ),
-                          ],
-                        ).paddingSymmetric(horizontal: 10, vertical: 10);
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    })
-              ],
-            ),
+                          // SmoothStarRating(
+                          //     allowHalfRating: false,
+                          //     onRatingChanged: (v) {
+                          //       rating = v;
+                          //       setState(() {});
+                          //     },
+                          //     starCount: 5,
+                          //    rating: rating,
+                          //     size: 40.0,
+                          //     filledIconData: Icons.star,
+                          //     halfFilledIconData: Icons.blur_on,
+                          //     color: Colors.yellow,
+                          //     borderColor: Colors.red,
+                          //     spacing:0.0
+                          // ),
+                          // SizedBox(height: 10,),
+                          // Container(
+                          //   child: Column(
+                          //     mainAxisAlignment: MainAxisAlignment.start,
+                          //     crossAxisAlignment: CrossAxisAlignment.center,
+                          //     children: [
+                          //       SizedBox(height: 8),
+                          //       chartRow(context, '5', 89),
+                          //       chartRow(context, '4', 70),
+                          //       chartRow(context, '3', 40),
+                          //       chartRow(context, '4', 10),
+                          //       chartRow(context, '1', 0),
+                          //       SizedBox(height: 8),
+                          //     ],
+                          //   ),
+                          // ),
+                          //         SizedBox(height: 20,),
+                          // Container(
+                          //   decoration: BoxDecoration(),
+                          //   height: Get.height * 0.08,
+                          //   child: TabBar(
+                          //     dividerColor: appcolor.newRedColor,
+                          //     isScrollable: true,
+                          //     unselectedLabelColor: Colors.black,
+                          //     unselectedLabelStyle: TextStyle(
+                          //       fontSize: 14,
+                          //     ),
+                          //     indicatorColor: appcolor.redColor,
+                          //     labelColor: Colors.black,
+                          //     labelStyle: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.black,
+                          //       fontSize: 14,
+                          //     ),
+                          //     controller: controller.tabcontroller,
+                          //     tabs: [
+                          //       Container(
+                          //         child: Text(
+                          //           'Description'.tr,
+                          //         ),
+                          //       ),
+                          //       Container(
+                          //         child: Text('Additional Information'.tr),
+                          //       ),
+                          //       Text('Review'.tr),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   height: Get.height * 0.15,
+                          //   child: Expanded(
+                          //     child: TabBarView(
+                          //       controller: controller.tabcontroller,
+                          //       children: [
+                          //         Column(
+                          //           children: [
+                          //             SizedBox(
+                          //               height: 10,
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   backgroundColor: Colors.black,
+                          //                   radius: 4,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 10,
+                          //                 ),
+                          //                 Text(
+                          //                   'Material- Galvanized Iron/ Mild Steel',
+                          //                   style: TextStyle(
+                          //                     fontSize: 14,
+                          //                     height: 1,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   backgroundColor: Colors.black,
+                          //                   radius: 4,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 10,
+                          //                 ),
+                          //                 Text(
+                          //                   'Raw Material- TATA Steel',
+                          //                   style: TextStyle(
+                          //                     fontSize: 14,
+                          //                     height: 1,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   backgroundColor: Colors.black,
+                          //                   radius: 4,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 10,
+                          //                 ),
+                          //                 Text(
+                          //                   'Feature- Flame and Rust Proof',
+                          //                   style: TextStyle(
+                          //                     fontSize: 14,
+                          //                     height: 1,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   backgroundColor: Colors.black,
+                          //                   radius: 4,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 10,
+                          //                 ),
+                          //                 Text(
+                          //                   'Dimensions- As per requirement',
+                          //                   style: TextStyle(
+                          //                     fontSize: 14,
+                          //                     height: 1,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   backgroundColor: Colors.black,
+                          //                   radius: 4,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 10,
+                          //                 ),
+                          //                 Text(
+                          //                   'Cable Entry- Side Entry',
+                          //                   style: TextStyle(
+                          //                     fontSize: 14,
+                          //                     height: 1,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         Center(child: Text('Information')),
+                          //         Center(child: Text('Review')),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     GradientText(
+                          //         gradient: appcolor.gradient,
+                          //         widget: Text('Related Products', style: TextStyle(fontSize: 20,color: appcolor.redColor),)),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 10,),
+                          // Wrap(
+                          //   spacing: 10,
+                          //   children: [
+                          //     appItemWidget('assets/image 25.png'),
+                          //     appItemWidget('assets/image 25.png'),
+                          //     appItemWidget('assets/image 25.png'),
+                          //   ],
+                          // ),
+                        ],
+                      ).paddingSymmetric(horizontal: 10, vertical: 10);
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  })
+            ],
           ),
         ),
       ),
@@ -1188,8 +1300,8 @@ class _detailedProductViewState extends State<detailedProductView> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(11)),
           border: Border.all(color: appcolor.redColor, width: 1)),
-      width: 120,
-      height: 40,
+      width: 100,
+      height: 30,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1213,9 +1325,10 @@ class _detailedProductViewState extends State<detailedProductView> {
             Text(
               '$quantity',
               style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(
               width: 2,

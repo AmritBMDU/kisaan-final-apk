@@ -124,462 +124,450 @@ class _register_viewState extends State<register_view> {
             resizeToAvoidBottomInset: false,
             body: Form(
               key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Get.height * 0.078,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: Get.height * 0.065,
+                  ),
+                  Container(
+                    child: GradientText(
+                      gradient: appcolor.gradient,
+                      widget: Text(
+                        AppLocalizations.of(context)!.signUp,
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: appcolor.redColor),
+                      ),
                     ),
-                    Container(
-                      child: GradientText(
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${AppLocalizations.of(context)!.note}: ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: appcolor.redColor),
+                      ),
+                      Text(AppLocalizations.of(context)!
+                          .kindlyfilldetailscarefully),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      // Text("Note: ",style: TextStyle(fontWeight: FontWeight.bold,color: appcolor.redColor),),
+                      Text(AppLocalizations.of(context)!
+                          .retailercansignupasadealer),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: Get.height * 0.055,
+                    child: customtextformfield(
+                      controller: name,
+                      label: '*',
+                      bottomLineColor: Color(0xffb8b8b8),
+                      hinttext: AppLocalizations.of(context)!.name,
+                      suffixIcon: Icon(Icons.person),
+                      newIcon:
+                          Icon(Icons.person, color: appcolor.SufixIconColor),
+                      // border: InputBorder.none,
+                      key_type: TextInputType.visiblePassword,
+                    ),
+                  ),
+                  Container(
+                    height: Get.height * 0.055,
+                    child: customtextformfield(
+                      controller: mobileNo,
+                      label: '*',
+                      bottomLineColor: Color(0xffb8b8b8),
+                      hinttext: AppLocalizations.of(context)!.phoneNumber,
+                      suffixIcon: Icon(
+                        Icons.call,
+                      ),
+                      newIcon: Icon(Icons.call, color: appcolor.SufixIconColor),
+                      key_type: TextInputType.phone,
+                      maxLength: 10,
+                    ),
+                  ),
+                  Container(
+                    height: Get.height * 0.055,
+                    child: customtextformfield(
+                      controller: password,
+                      label: '*',
+                      bottomLineColor: Color(0xffb8b8b8),
+                      hinttext: AppLocalizations.of(context)!.createpassword,
+                      suffixIcon: Icon(Icons.lock_open),
+                      showPassword: controller.showPassword.value,
+                      callback: () {
+                        controller.showPassword.value =
+                            !controller.showPassword.value;
+                        setState(() {});
+                      },
+                      newIcon: Icon(
+                        Icons.lock,
+                        color: Colors.red,
+                      ),
+                      key_type: TextInputType.visiblePassword,
+                    ),
+                  ),
+                  Container(
+                    height: Get.height * 0.055,
+                    child: customtextformfield(
+                      controller: refferal,
+                      label: "",
+                      bottomLineColor: Color(0xffb8b8b8),
+                      hinttext: AppLocalizations.of(context)!.referralCode,
+
+                      // callback: () {
+                      //   controller.showPassword.value =
+                      //       !controller.showPassword.value;
+                      //   setState(() {});
+                      // },
+                      // newIcon: Icon(
+                      //   Icons.,
+                      //   color: Colors.red,
+                      // ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      GradientText(
                         gradient: appcolor.gradient,
                         widget: Text(
-                          AppLocalizations.of(context)!.signUp,
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: appcolor.redColor),
+                          AppLocalizations.of(context)!.yourprofession,
+                          style:
+                              TextStyle(fontSize: 18, color: appcolor.redColor),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "${AppLocalizations.of(context)!.note}: ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: appcolor.redColor),
-                        ),
-                        Text(AppLocalizations.of(context)!
-                            .kindlyfilldetailscarefully),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        // Text("Note: ",style: TextStyle(fontWeight: FontWeight.bold,color: appcolor.redColor),),
-                        Text(AppLocalizations.of(context)!
-                            .retailercansignupasadealer),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: Get.height * 0.055,
-                      child: customtextformfield(
-                        controller: name,
-                        label: '*',
-                        bottomLineColor: Color(0xffb8b8b8),
-                        hinttext: AppLocalizations.of(context)!.name,
-                        suffixIcon: Icon(Icons.person),
-                        newIcon:
-                            Icon(Icons.person, color: appcolor.SufixIconColor),
-                        // border: InputBorder.none,
-                        key_type: TextInputType.visiblePassword,
-                      ),
-                    ),
-                    Container(
-                      height: Get.height * 0.055,
-                      child: customtextformfield(
-                        controller: mobileNo,
-                        label: '*',
-                        bottomLineColor: Color(0xffb8b8b8),
-                        hinttext: AppLocalizations.of(context)!.phoneNumber,
-                        suffixIcon: Icon(
-                          Icons.call,
-                        ),
-                        newIcon:
-                            Icon(Icons.call, color: appcolor.SufixIconColor),
-                        key_type: TextInputType.phone,
-                        maxLength: 10,
-                      ),
-                    ),
-                    Container(
-                      height: Get.height * 0.055,
-                      child: customtextformfield(
-                        controller: password,
-                        label: '*',
-                        bottomLineColor: Color(0xffb8b8b8),
-                        hinttext: AppLocalizations.of(context)!.createpassword,
-                        suffixIcon: Icon(Icons.lock_open),
-                        showPassword: controller.showPassword.value,
-                        callback: () {
-                          controller.showPassword.value =
-                              !controller.showPassword.value;
-                          setState(() {});
-                        },
-                        newIcon: Icon(
-                          Icons.lock,
-                          color: Colors.red,
-                        ),
-                        key_type: TextInputType.visiblePassword,
-                      ),
-                    ),
-                    Container(
-                      height: Get.height * 0.055,
-                      child: customtextformfield(
-                        controller: refferal,
-                        label: '',
-                        bottomLineColor: Color(0xffb8b8b8),
-                        hinttext: "Refferal Code",
-
-                        // callback: () {
-                        //   controller.showPassword.value =
-                        //       !controller.showPassword.value;
-                        //   setState(() {});
-                        // },
-                        // newIcon: Icon(
-                        //   Icons.,
-                        //   color: Colors.red,
-                        // ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        GradientText(
-                          gradient: appcolor.gradient,
-                          widget: Text(
-                            AppLocalizations.of(context)!.yourprofession,
-                            style: TextStyle(
-                                fontSize: 18, color: appcolor.redColor),
-                          ),
-                        ),
-                      ],
-                    ).paddingSymmetric(horizontal: 10),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Obx(
-                      () => Container(
-                        height: Get.height * 0.03,
-                        child: Row(
-                          children: [
-                            Radio(
-                              value: 'electrician',
-                              groupValue: controller.groupValue.value,
-                              onChanged: (val) {
-                                controller.groupValue.value = val.toString();
-                              },
-                              fillColor: MaterialStateColor.resolveWith(
-                                (states) => appcolor.mixColor,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  controller.groupValue.value = 'electrician';
-                                });
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.electrician,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            Radio(
-                              value: 'dealer',
-                              groupValue: controller.groupValue.value,
-                              onChanged: (val) {
-                                setState(() {
-                                  controller.groupValue.value = val.toString();
-                                });
-                              },
-                              fillColor: MaterialStateColor.resolveWith(
-                                (states) => appcolor.mixColor,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  controller.groupValue.value = 'dealer';
-                                });
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    AppLocalizations.of(context)!.dealer,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  Text(
-                                    '*',
-                                    style: TextStyle(color: appcolor.redColor),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Radio(
-                              value: 'partner',
-                              groupValue: controller.groupValue.value,
-                              onChanged: (val) {
-                                controller.groupValue.value = val.toString();
-                              },
-                              fillColor: MaterialStateColor.resolveWith(
-                                (states) => appcolor.mixColor,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  controller.groupValue.value = 'partner';
-                                });
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.partner,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Obx(
-                      () => customwidget(
-                        controller.groupValue.value,
-                        bussinessName,
-                        dealerPartnerCin,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Checkbox(
-                          checkColor: Colors.white,
-                          // fillColor: Colors.red,
-                          value: isSelected,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              isSelected = value!;
-                            });
-                          },
-                        ),
-                        Row(
-                          children: [
-                            Text(AppLocalizations.of(context)!.iagree),
-                            TextButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        content: FutureBuilder(
-                                          future: termscondition(),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.connectionState ==
-                                                ConnectionState.waiting) {
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              );
-                                            } else if (snapshot.hasError) {
-                                              return Center(
-                                                child: Text('data not found'),
-                                              );
-                                            } else if (snapshot.hasData) {
-                                              return SingleChildScrollView(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 0, right: 0),
-                                                  child: Html(
-                                                    data:
-                                                        """${snapshot.data['data']}""",
-                                                  ),
-                                                ),
-                                              );
-                                            } else {
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              );
-                                            }
-                                          },
-                                        ).paddingSymmetric(
-                                          horizontal: 2,
-                                        ),
-                                        actions: [
-                                          Container(
-                                            height: Get.height * 0.055,
-                                            child: blockButton(
-                                              callback: () {
-                                                setState(() {
-                                                  isSelected = true;
-                                                });
-                                                Get.back();
-                                              },
-                                              width: Get.width * 0.9,
-                                              widget: Text(
-                                                'Ok',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold,
-                                                    height: 1.2),
-                                              ),
-                                              verticalPadding: 3,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              child: Text(AppLocalizations.of(context)!
-                                  .termsAndConditions),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    Container(
-                      height: Get.height * 0.055,
-                      child: blockButton(
-                        callback: () {
-                          otps = random(100000, 999999);
-                          //print(otps);
-                          // makePostRequest();
-                          var Name = name.text.trim().toString();
-                          var Password = password.text.trim().toString();
-                          var MobileNo = mobileNo.text.trim();
-                          var BussinessName =
-                              bussinessName.text.trim().toString();
-                          var Refferal = refferal.text.trim().toString();
-                          var cin = dealerPartnerCin.text.trim();
-                          if (Name == '' && Password == '' && MobileNo == '') {
-                            return alertBoxdialogBox(
-                                context, 'Alert', 'Please fill Field');
-                          } else if (MobileNo.length < 10) {
-                            alertBoxdialogBox(context, 'Alert',
-                                'The Mobile Number Must be 10 Digits.');
-                          }
-
-                          // else if(BussinessName == ''){
-                          //   alertBoxdialogBox(context, 'Alert', 'Enter Bussiness Name' );
-                          //
-                          // }
-
-                          else if (Name != '' &&
-                              Password != '' &&
-                              MobileNo != '') {
-                            if (isSelected == false) {
-                              return alertBoxdialogBox(context, 'Alert',
-                                  'Please agree term and condition');
-                            } else {
-                              setState(() {
-                                isLoading = true;
-                              });
-                              Future.delayed(Duration(seconds: 3), () {
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              });
-                              // otp(MobileNo,otps);
-                              otp(MobileNo, otps, Name, Password, BussinessName,
-                                  cin, Refferal);
-                            }
-                          }
-                          // Get.to(Home_view());
-                        },
-                        width: Get.width * 0.35,
-                        widget: isLoading
-                            ? SizedBox(
-                                height: 10,
-                                width: 10,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ))
-                            : Text(
-                                AppLocalizations.of(context)!.signUp,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.2),
-                              ),
-                        verticalPadding: 3,
-                      ),
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          child: GradientText(
-                            widget: Text(
-                              '${AppLocalizations.of(context)!.havekissanaccount}? ',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
-                            ),
-                            gradient: appcolor.gradient,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.offAll(login_view());
-                          },
-                          child: Stack(
-                            children: [
-                              Container(
-                                child: GradientText(
-                                  widget: Text(
-                                    AppLocalizations.of(context)!.login,
-                                    style: TextStyle(
-                                      height: 1,
-                                      fontSize: 15,
-                                      color: appcolor.redColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  gradient: appcolor.gradient,
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: 18,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
+                    ],
+                  ).paddingSymmetric(horizontal: 10),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Obx(
+                    () => Container(
                       height: Get.height * 0.03,
-                    ),
-                    Container(
-                      height: Get.height * 0.25,
-                      child: Image(
-                        image: AssetImage(
-                          'assets/imgpsh_fullsize_anim 1.png',
-                        ),
-                        fit: BoxFit.fill,
+                      child: Row(
+                        children: [
+                          Radio(
+                            value: 'electrician',
+                            groupValue: controller.groupValue.value,
+                            onChanged: (val) {
+                              controller.groupValue.value = val.toString();
+                            },
+                            fillColor: MaterialStateColor.resolveWith(
+                              (states) => appcolor.mixColor,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.groupValue.value = 'electrician';
+                              });
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.electrician,
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          Radio(
+                            value: 'dealer',
+                            groupValue: controller.groupValue.value,
+                            onChanged: (val) {
+                              setState(() {
+                                controller.groupValue.value = val.toString();
+                              });
+                            },
+                            fillColor: MaterialStateColor.resolveWith(
+                              (states) => appcolor.mixColor,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.groupValue.value = 'dealer';
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.dealer,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '*',
+                                  style: TextStyle(color: appcolor.redColor),
+                                )
+                              ],
+                            ),
+                          ),
+                          Radio(
+                            value: 'partner',
+                            groupValue: controller.groupValue.value,
+                            onChanged: (val) {
+                              controller.groupValue.value = val.toString();
+                            },
+                            fillColor: MaterialStateColor.resolveWith(
+                              (states) => appcolor.mixColor,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                controller.groupValue.value = 'partner';
+                              });
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.partner,
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ).paddingSymmetric(horizontal: 15, vertical: 15),
-              ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Obx(
+                    () => customwidget(
+                      controller.groupValue.value,
+                      bussinessName,
+                      dealerPartnerCin,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        // fillColor: Colors.red,
+                        value: isSelected,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isSelected = value!;
+                          });
+                        },
+                      ),
+                      Row(
+                        children: [
+                          Text(AppLocalizations.of(context)!.iagree),
+                          TextButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: FutureBuilder(
+                                        future: termscondition(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          } else if (snapshot.hasError) {
+                                            return Center(
+                                              child: Text('data not found'),
+                                            );
+                                          } else if (snapshot.hasData) {
+                                            return SingleChildScrollView(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0, right: 0),
+                                                child: Html(
+                                                  data:
+                                                      """${snapshot.data['data']}""",
+                                                ),
+                                              ),
+                                            );
+                                          } else {
+                                            return Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          }
+                                        },
+                                      ).paddingSymmetric(
+                                        horizontal: 2,
+                                      ),
+                                      actions: [
+                                        Container(
+                                          height: Get.height * 0.055,
+                                          child: blockButton(
+                                            callback: () {
+                                              setState(() {
+                                                isSelected = true;
+                                              });
+                                              Get.back();
+                                            },
+                                            width: Get.width * 0.9,
+                                            widget: Text(
+                                              'Ok',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  height: 1.2),
+                                            ),
+                                            verticalPadding: 3,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: Text(AppLocalizations.of(context)!
+                                .termsAndConditions),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Container(
+                    height: Get.height * 0.055,
+                    child: blockButton(
+                      callback: () {
+                        otps = random(100000, 999999);
+                        //print(otps);
+                        // makePostRequest();
+                        var Name = name.text.trim().toString();
+                        var Password = password.text.trim().toString();
+                        var MobileNo = mobileNo.text.trim();
+                        var BussinessName =
+                            bussinessName.text.trim().toString();
+                        var Refferal = refferal.text.trim().toString();
+                        var cin = dealerPartnerCin.text.trim();
+                        if (Name == '' && Password == '' && MobileNo == '') {
+                          return alertBoxdialogBox(
+                              context, 'Alert', 'Please fill Field');
+                        } else if (MobileNo.length < 10) {
+                          alertBoxdialogBox(context, 'Alert',
+                              'The Mobile Number Must be 10 Digits.');
+                        }
+
+                        // else if(BussinessName == ''){
+                        //   alertBoxdialogBox(context, 'Alert', 'Enter Bussiness Name' );
+                        //
+                        // }
+
+                        else if (Name != '' &&
+                            Password != '' &&
+                            MobileNo != '') {
+                          if (isSelected == false) {
+                            return alertBoxdialogBox(context, 'Alert',
+                                'Please agree term and condition');
+                          } else {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            Future.delayed(Duration(seconds: 3), () {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            });
+                            // otp(MobileNo,otps);
+                            otp(MobileNo, otps, Name, Password, BussinessName,
+                                cin, Refferal);
+                          }
+                        }
+                        // Get.to(Home_view());
+                      },
+                      width: Get.width * 0.35,
+                      widget: isLoading
+                          ? SizedBox(
+                              height: 10,
+                              width: 10,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ))
+                          : Text(
+                              AppLocalizations.of(context)!.signUp,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.2),
+                            ),
+                      verticalPadding: 3,
+                    ),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.01,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        child: GradientText(
+                          widget: Text(
+                            '${AppLocalizations.of(context)!.havekissanaccount}? ',
+                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          ),
+                          gradient: appcolor.gradient,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.offAll(login_view());
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              child: GradientText(
+                                widget: Text(
+                                  AppLocalizations.of(context)!.login,
+                                  style: TextStyle(
+                                    height: 1,
+                                    fontSize: 17,
+                                    color: appcolor.redColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                gradient: appcolor.gradient,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: Get.height * 0.15,
+                    child: Image(
+                      image: AssetImage(
+                        'assets/imgpsh_fullsize_anim 1.png',
+                      ),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ],
+              ).paddingSymmetric(horizontal: 15, vertical: 15),
             ),
           ),
         ),
@@ -640,7 +628,7 @@ class _register_viewState extends State<register_view> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'OTP VERIFICATION',
+                          AppLocalizations.of(context)!.otpVerification,
                           style: TextStyle(
                               color: Color.fromRGBO(53, 53, 52, 1),
                               fontSize: 24,
@@ -648,7 +636,7 @@ class _register_viewState extends State<register_view> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Verify Your Mobile Number',
+                          AppLocalizations.of(context)!.verifyMobileNumber,
                           style: TextStyle(
                               color: Color.fromRGBO(53, 53, 52, 1),
                               fontSize: 16,
@@ -656,7 +644,7 @@ class _register_viewState extends State<register_view> {
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          'Verify your mobile number',
+                          AppLocalizations.of(context)!.verifyMobileNumber,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -683,11 +671,13 @@ class _register_viewState extends State<register_view> {
                         RichText(
                           maxLines: 2,
                           text: TextSpan(
-                            text: 'Dont receive OTP ',
+                            text:
+                                '${AppLocalizations.of(context)!.dontReceive} ',
                             style: TextStyle(color: Colors.black),
-                            children: const <TextSpan>[
+                            children: <TextSpan>[
                               TextSpan(
-                                  text: 'Resend',
+                                  text:
+                                      '${AppLocalizations.of(context)!.resend}',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold)),
                             ],
@@ -725,7 +715,7 @@ class _register_viewState extends State<register_view> {
                                 // logIn(Email, );
                               }
                             },
-                            child: Text('Submit',
+                            child: Text(AppLocalizations.of(context)!.submit,
                                 style: TextStyle(
                                     color: Colors.white, fontFamily: 'nunito')),
                             style: ElevatedButton.styleFrom(
@@ -790,47 +780,54 @@ Widget customwidget(
 ) {
   //electric
   if (type == 'electrician') {
-    return Container(
-      height: Get.height * 0.055,
-      child: customtextformfield(
-        controller: dealerPartnerCin,
-        hinttext: 'Dealer/Partner CODE',
-        bottomLineColor: Color(0xffb8b8b8),
-        key_type: TextInputType.visiblePassword,
-      ),
-    );
+    return Builder(builder: (context) {
+      return Container(
+        height: Get.height * 0.055,
+        child: customtextformfield(
+          controller: dealerPartnerCin,
+          hinttext:
+              '${AppLocalizations.of(context)!.dealer} / ${AppLocalizations.of(context)!.partnerCode}',
+          bottomLineColor: Color(0xffb8b8b8),
+          key_type: TextInputType.visiblePassword,
+        ),
+      );
+    });
   } else if (type == 'dealer') {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-              height: Get.height * 0.055,
-              child: customtextformfield(
-                controller: bussinessName,
-                hinttext: 'Business Name',
-                bottomLineColor: Color(0xffb8b8b8),
-                key_type: TextInputType.visiblePassword,
-              )),
-          Container(
-              height: Get.height * 0.055,
-              child: customtextformfield(
-                controller: dealerPartnerCin,
-                hinttext: 'Partner CODE',
-                bottomLineColor: Color(0xffb8b8b8),
-                key_type: TextInputType.visiblePassword,
-              )),
-        ],
-      ),
-    );
+    return Builder(builder: (context) {
+      return Container(
+        child: Column(
+          children: [
+            Container(
+                height: Get.height * 0.055,
+                child: customtextformfield(
+                  controller: bussinessName,
+                  hinttext: '${AppLocalizations.of(context)!.businessName}',
+                  bottomLineColor: Color(0xffb8b8b8),
+                  key_type: TextInputType.visiblePassword,
+                )),
+            Container(
+                height: Get.height * 0.055,
+                child: customtextformfield(
+                  controller: dealerPartnerCin,
+                  hinttext: '${AppLocalizations.of(context)!.partnerCode}',
+                  bottomLineColor: Color(0xffb8b8b8),
+                  key_type: TextInputType.visiblePassword,
+                )),
+          ],
+        ),
+      );
+    });
   } else {
-    return Container(
-      height: Get.height * 0.055,
-      child: customtextformfield(
-        controller: bussinessName,
-        hinttext: 'Business Name',
-        bottomLineColor: Color(0xffb8b8b8),
-        key_type: TextInputType.visiblePassword,
-      ),
-    );
+    return Builder(builder: (context) {
+      return Container(
+        height: Get.height * 0.055,
+        child: customtextformfield(
+          controller: bussinessName,
+          hinttext: '${AppLocalizations.of(context)!.businessName}',
+          bottomLineColor: Color(0xffb8b8b8),
+          key_type: TextInputType.visiblePassword,
+        ),
+      );
+    });
   }
 }

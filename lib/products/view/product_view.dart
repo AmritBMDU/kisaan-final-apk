@@ -517,7 +517,7 @@ class _product_viewState extends State<product_view> {
                                           itemBuilder: (context, index) {
                                             var data = snapshot.data[index];
                                             return InkWell(
-                                              onTap: () { 
+                                              onTap: () {
                                                 Get.to(detailedProductView(
                                                   name: data['id'],
                                                 ));
@@ -635,6 +635,7 @@ class _product_viewState extends State<product_view> {
     // print(response.statusCode);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+
       if (data['status'] == false) {
         return AlertBoxdialogBoxes(context, 'Alert', '${data['massage']}');
       }

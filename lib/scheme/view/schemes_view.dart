@@ -64,6 +64,7 @@ class _schemes_viewState extends State<schemes_view> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    Schems();
     getConnectivity();
   }
 
@@ -299,7 +300,27 @@ class _schemes_viewState extends State<schemes_view> {
                         });
                   } else {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 100),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                "Your Status: ",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                " Pending",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     );
                   }
                 }),
@@ -321,12 +342,11 @@ class _schemes_viewState extends State<schemes_view> {
         }));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+
       print(data);
       final point = data['point'];
-
       totalPoint = point;
       print(totalPoint);
-
       final dataa = data['data']['scheme'];
       return dataa;
     }

@@ -278,10 +278,11 @@ class _allCategoriesState extends State<allCategories> {
                                                   Text(
                                                     '${data['category'].length < 14 ? data['category'] : data['category'].toString().substring(0, 14) + '..'}',
                                                     style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FontStyle.italic),
                                                     maxLines: 1,
                                                     textAlign: TextAlign.center,
                                                   ),

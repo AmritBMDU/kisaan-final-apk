@@ -452,6 +452,9 @@ class _Home_viewState extends State<Home_view> {
                                       color: appcolor.black,
                                     ),
                                   ),
+                                  SizedBox(
+                                    width: 7,
+                                  ),
                                   Text(
                                     '${data['user_status']}',
                                     style: TextStyle(

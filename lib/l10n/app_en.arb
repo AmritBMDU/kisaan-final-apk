@@ -174,5 +174,12 @@
 "odia": "Odia",
 "nepali": "Nepali",
 "orders":"Orders",
-"exit": "Do you want to exit?"
+"exit": "Do you want to exit?",
+"referralCode": "Referral Code",
+"businessName": "Business Name",
+"partnerCode": "Partner Code",
+"otpVerification": "OTP Verification",
+"verifyMobileNumber": "Verify Your Mobile Number",
+"dontReceive": "Don't receive",
+"resend": "Resend"
 }

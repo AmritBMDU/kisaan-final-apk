@@ -494,7 +494,10 @@ Widget customDrawer(
                               drawerWidget(
                                 callback: () {
                                   Get.back();
-                                  Get.to(schemes_view());
+                                  data['user_status'] == 'Pending'
+                                      ? alertBoxdialogBox(context, 'Alert',
+                                          'Status: ${data['user_status']}')
+                                      : Get.to(schemes_view());
                                 },
                                 title: AppLocalizations.of(context)!.scheme,
                                 image: Container(
